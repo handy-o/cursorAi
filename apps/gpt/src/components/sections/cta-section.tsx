@@ -22,7 +22,7 @@ export default function CTASection() {
           {/* CTA Buttons */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <Link href="/reservation" className="block">
+              <Link href="/cursorAi/gpt/reservation/" className="block">
                 <Button 
                   size="lg" 
                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold px-8 py-4 text-lg rounded-full"

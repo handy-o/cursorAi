@@ -8,11 +8,11 @@ import { Menu, X, Dumbbell, Users, Calendar, FileText, CheckCircle } from 'lucid
 import { cn } from '@/lib/utils';
 
 const navigation = [
-  { name: '헬스장 소개', href: '/', icon: Dumbbell },
-  { name: '강사진 소개', href: '/trainers', icon: Users },
-  { name: '수업', href: '/classes', icon: Calendar },
-  { name: '방문 예약', href: '/reservation', icon: FileText },
-  { name: '예약 완료', href: '/reservation/complete', icon: CheckCircle },
+  { name: '헬스장 소개', href: '/cursorAi/gpt/', icon: Dumbbell },
+  { name: '강사진 소개', href: '/cursorAi/gpt/trainers/', icon: Users },
+  { name: '수업', href: '/cursorAi/gpt/classes/', icon: Calendar },
+  { name: '방문 예약', href: '/cursorAi/gpt/reservation/', icon: FileText },
+  { name: '예약 완료', href: '/cursorAi/gpt/reservation/complete/', icon: CheckCircle },
 ];
 
 export default function Sidebar() {
@@ -80,7 +80,7 @@ export default function Sidebar() {
 
           {/* CTA Button */}
           <div className="p-4 border-t border-gray-700">
-            <Link href="/reservation" onClick={() => setIsOpen(false)}>
+            <Link href="/cursorAi/gpt/reservation/" onClick={() => setIsOpen(false)}>
               <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold">
                 지금 예약하기
               </Button>

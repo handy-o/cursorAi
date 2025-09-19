@@ -33,7 +33,7 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/reservation">
+          <Link href="/cursorAi/gpt/reservation/">
             <Button 
               size="lg" 
               className="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold px-8 py-4 text-lg rounded-full"
@@ -41,7 +41,7 @@ export default function HeroSection() {
               지금 예약하기
             </Button>
           </Link>
-          <Link href="/trainers">
+          <Link href="/cursorAi/gpt/trainers/">
             <Button 
               size="lg" 
               variant="outline" 

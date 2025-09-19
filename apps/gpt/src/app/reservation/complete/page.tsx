@@ -160,7 +160,7 @@ function ReservationContent() {
                     </button>
 
                     <div className="text-center">
-                      <Link href="/reservation" className="text-yellow-600 hover:text-yellow-700 font-medium">
+                      <Link href="/cursorAi/gpt/reservation/" className="text-yellow-600 hover:text-yellow-700 font-medium">
                         새로 예약하기
                       </Link>
                     </div>
@@ -296,7 +296,7 @@ function ReservationContent() {
 
                   {/* Action Buttons */}
                   <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/">
+                    <Link href="/cursorAi/gpt/">
                       <button className="flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold px-8 py-4 rounded-lg transition-colors">
                         <Home className="w-5 h-5" />
                         <span>홈으로 돌아가기</span>
