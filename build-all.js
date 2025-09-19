@@ -16,6 +16,26 @@ if (fs.existsSync('docs')) {
 }
 fs.mkdirSync('docs');
 
+// Build main app first
+console.log('📦 Building main app...');
+try {
+  execSync('npm run build', { stdio: 'inherit' });
+  
+  // Copy main app build to docs root
+  if (fs.existsSync('out')) {
+    const mainOut = fs.readdirSync('out');
+    mainOut.forEach(file => {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree') {
+        fs.cpSync(`out/${file}`, `docs/${file}`, { recursive: true });
+      }
+    });
+    console.log('✅ Main app built and copied successfully\n');
+  }
+} catch (error) {
+  console.error('❌ Failed to build main app:', error.message);
+  process.exit(1);
+}
+
 // Build GPT app
 console.log('📦 Building GPT app...');
 try {

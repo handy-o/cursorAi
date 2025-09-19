@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   basePath:  isDev ? "" : "/landing",
+  assetPrefix: isDev ? "" : "/cursorAi/landing/",
   eslint: {
     ignoreDuringBuilds: true,
   },
