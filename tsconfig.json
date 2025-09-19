@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es6"
-    ],
+    "lib": ["dom","dom.iterable","es6"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,28 +13,21 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{"name": "next"}],
+    "baseUrl": "./src",           // 루트 앱 src 기준
+    "paths": {
+      "@/*": ["*"]               // @/ → src/*
+    }
   },
   "files": [],
   "references": [
-    {
-      "path": "./apps/gpt"
-    },
-    {
-      "path": "./apps/landing"
-    },
-    {
-      "path": "./apps/linktree"
-    }
+    {"path": "./apps/gpt"},
+    {"path": "./apps/landing"},
+    {"path": "./apps/linktree"}
   ],
   "include": [
+    "src",                        // 루트 앱 src 포함
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
