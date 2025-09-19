@@ -14,7 +14,17 @@ fs.mkdirSync('out');
 console.log('📦 Building main app...');
 try {
   execSync('npm run build', { stdio: 'inherit' });
-  console.log('✅ Main app built successfully\n');
+  
+  // Copy main app build to out root
+  if (fs.existsSync('out')) {
+    const mainOut = fs.readdirSync('out');
+    mainOut.forEach(file => {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree') {
+        // Main app files are already in out root
+      }
+    });
+    console.log('✅ Main app built successfully\n');
+  }
 } catch (error) {
   console.error('❌ Failed to build main app:', error.message);
   process.exit(1);
@@ -29,6 +39,9 @@ try {
   if (fs.existsSync('apps/gpt/out')) {
     fs.cpSync('apps/gpt/out', 'out/gpt', { recursive: true });
     console.log('✅ GPT app built and copied successfully\n');
+  } else {
+    console.error('❌ GPT app build output not found');
+    process.exit(1);
   }
 } catch (error) {
   console.error('❌ Failed to build GPT app:', error.message);
@@ -44,6 +57,9 @@ try {
   if (fs.existsSync('apps/landing/out')) {
     fs.cpSync('apps/landing/out', 'out/landing', { recursive: true });
     console.log('✅ Landing app built and copied successfully\n');
+  } else {
+    console.error('❌ Landing app build output not found');
+    process.exit(1);
   }
 } catch (error) {
   console.error('❌ Failed to build Landing app:', error.message);
@@ -59,6 +75,9 @@ try {
   if (fs.existsSync('apps/linktree/out')) {
     fs.cpSync('apps/linktree/out', 'out/linktree', { recursive: true });
     console.log('✅ Linktree app built and copied successfully\n');
+  } else {
+    console.error('❌ Linktree app build output not found');
+    process.exit(1);
   }
 } catch (error) {
   console.error('❌ Failed to build Linktree app:', error.message);
@@ -72,3 +91,7 @@ console.log('  - / (main app)');
 console.log('  - /gpt');
 console.log('  - /landing');
 console.log('  - /linktree');
+console.log('\n🌐 Deploy to GitHub Pages:');
+console.log('  1. Push to main branch');
+console.log('  2. GitHub Actions will automatically deploy');
+console.log('  3. Check Actions tab for deployment status');

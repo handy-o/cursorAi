@@ -1,26 +1,13 @@
 # Cursor AI Projects
 
-A collection of AI-powered applications built with Next.js, TypeScript, and modern web technologies.
+A collection of modern web applications built with Next.js, featuring multiple apps in a monorepo structure.
 
-## 🚀 Live Demo
+## 🚀 Applications
 
-- **Main App**: [https://handy-o.github.io/cursor-ai/](https://handy-o.github.io/cursor-ai/)
-- **GPT Project**: [https://handy-o.github.io/cursor-ai/gpt/](https://handy-o.github.io/cursor-ai/gpt/)
-- **Landing Page**: [https://handy-o.github.io/cursor-ai/landing/](https://handy-o.github.io/cursor-ai/landing/)
-- **Linktree**: [https://handy-o.github.io/cursor-ai/linktree/](https://handy-o.github.io/cursor-ai/linktree/)
-
-## 📁 Project Structure
-
-```
-cursor-ai/
-├── src/                    # Main app source code
-├── apps/                   # Individual applications
-│   ├── gpt/               # GPT-powered application
-│   ├── landing/           # Modern landing page
-│   └── linktree/          # Personal link collection
-├── .github/workflows/     # GitHub Actions
-└── build-all.js          # Build script for all apps
-```
+- **Main App** (`/`) - Main landing page
+- **GPT App** (`/gpt`) - AI-powered application
+- **Landing Page** (`/landing`) - Professional landing page
+- **Linktree** (`/linktree`) - Social media link aggregator
 
 ## 🛠️ Tech Stack
 
@@ -29,105 +16,104 @@ cursor-ai/
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **State Management**: Zustand
+- **Data Fetching**: TanStack Query
 - **Forms**: React Hook Form + Zod
 - **Icons**: Lucide React
 - **Deployment**: GitHub Pages
 
-## 🚀 Getting Started
+## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 20+
 - npm
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository
 ```bash
-git clone https://github.com/handy-o/cursor-ai.git
-cd cursor-ai
+git clone <repository-url>
+cd cursor-ai-projects
 ```
 
-2. Install dependencies:
+2. Install dependencies
 ```bash
 npm install
 ```
 
-3. Install dependencies for each app:
+3. Install app dependencies
 ```bash
 cd apps/gpt && npm install
 cd ../landing && npm install
 cd ../linktree && npm install
-cd ../..
 ```
 
 ### Development
 
-Run the main app:
+Run all apps in development mode:
+
 ```bash
+# Main app
 npm run dev
-```
 
-Run individual apps:
-```bash
-# GPT app (port 3001)
-npm run dev:gpt
-
-# Landing app (port 3002)
-npm run dev:landing
-
-# Linktree app (port 3003)
-npm run dev:linktree
+# Individual apps
+npm run dev:gpt      # Port 3001
+npm run dev:landing  # Port 3002
+npm run dev:linktree # Port 3003
 ```
 
 ### Building
 
 Build all applications:
+
 ```bash
 npm run build:all
 ```
 
 Build individual apps:
+
 ```bash
 npm run build:gpt
 npm run build:landing
 npm run build:linktree
 ```
 
-## 📦 Applications
-
-### 1. GPT Project
-AI-powered application with advanced features and modern UI.
-
-### 2. Landing Page
-Responsive landing page with beautiful design and smooth animations.
-
-### 3. Linktree
-Personal link collection and sharing platform with customizable themes.
-
 ## 🚀 Deployment
 
-This project is automatically deployed to GitHub Pages using GitHub Actions. The workflow:
+This project is configured for GitHub Pages deployment. The build process creates static exports for all applications:
 
-1. Builds all applications
-2. Combines them into a single output directory
-3. Deploys to GitHub Pages
+- Main app: `/`
+- GPT app: `/gpt`
+- Landing page: `/landing`
+- Linktree: `/linktree`
 
-## 🤝 Contributing
+### GitHub Pages Setup
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Enable GitHub Pages in repository settings
+2. Set source to "GitHub Actions"
+3. Push to main branch to trigger deployment
 
-## 📄 License
+## 📁 Project Structure
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+├── apps/
+│   ├── gpt/          # AI-powered application
+│   ├── landing/      # Professional landing page
+│   └── linktree/     # Social media link aggregator
+├── src/              # Main app source
+├── .github/workflows/ # GitHub Actions
+└── out/              # Build output (generated)
+```
 
-## 🙏 Acknowledgments
+## 🔧 Configuration
 
-- [Next.js](https://nextjs.org/) - The React framework
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI components
-- [Lucide](https://lucide.dev/) - Beautiful & consistent icon toolkit
+Each app has its own configuration:
+
+- `next.config.ts` - Next.js configuration
+- `tsconfig.json` - TypeScript configuration
+- `package.json` - Dependencies and scripts
+- `vercel.json` - Deployment configuration
+
+## 📝 License
+
+This project is private and proprietary.
