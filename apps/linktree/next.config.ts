@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath:  isDev ? "" : '/linktree',
+  basePath:  isDev ? "" : '/cursorAi/linktree',
   assetPrefix: isDev ? "" : "/cursorAi/linktree/",
   eslint: {
     ignoreDuringBuilds: true,
