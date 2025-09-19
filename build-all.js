@@ -33,7 +33,7 @@ try {
 // Build GPT app
 console.log('📦 Building GPT app...');
 try {
-  execSync('cd apps/gpt && npm run build', { stdio: 'inherit' });
+  execSync('cd apps/gpt && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
   
   // Copy GPT build to out/gpt
   if (fs.existsSync('apps/gpt/out')) {
@@ -51,7 +51,7 @@ try {
 // Build Landing app
 console.log('📦 Building Landing app...');
 try {
-  execSync('cd apps/landing && npm run build', { stdio: 'inherit' });
+  execSync('cd apps/landing && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
   
   // Copy Landing build to out/landing
   if (fs.existsSync('apps/landing/out')) {
@@ -69,7 +69,7 @@ try {
 // Build Linktree app
 console.log('📦 Building Linktree app...');
 try {
-  execSync('cd apps/linktree && npm run build', { stdio: 'inherit' });
+  execSync('cd apps/linktree && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
   
   // Copy Linktree build to out/linktree
   if (fs.existsSync('apps/linktree/out')) {
