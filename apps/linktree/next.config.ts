@@ -3,8 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === 'production' ? '/cursor-ai/linktree' : '/linktree',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/cursor-ai/linktree/' : '/linktree/',
+  basePath: '/linktree',
   eslint: {
     ignoreDuringBuilds: true,
   },

@@ -27,13 +27,13 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps --no-audit
+        run: rm -f package-lock.json && npm install --legacy-peer-deps --no-audit
         
       - name: Install app dependencies
         run: |
-          cd apps/gpt && npm ci --legacy-peer-deps --no-audit
-          cd ../landing && npm ci --legacy-peer-deps --no-audit
-          cd ../linktree && npm ci --legacy-peer-deps --no-audit
+          cd apps/gpt && rm -f package-lock.json && npm install --legacy-peer-deps --no-audit
+          cd ../landing && rm -f package-lock.json && npm install --legacy-peer-deps --no-audit
+          cd ../linktree && rm -f package-lock.json && npm install --legacy-peer-deps --no-audit
           
       - name: Build all apps
         run: npm run build:all

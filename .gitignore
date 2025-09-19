@@ -42,3 +42,7 @@ apps/*/out
 
 # GitHub Pages
 out/
+
+# Package lock files (regenerated on each build)
+package-lock.json
+apps/*/package-lock.json

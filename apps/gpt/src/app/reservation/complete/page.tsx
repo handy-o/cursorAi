@@ -1,7 +1,7 @@
 'use client';
 
 import MainLayout from '@/components/layout/main-layout';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { CheckCircle, Calendar, Clock, User, Phone, Mail, ArrowLeft, Home, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -28,7 +28,7 @@ const programNames: { [key: string]: string } = {
   'consultation': '무료 상담',
 };
 
-export default function ReservationCompletePage() {
+function ReservationContent() {
   const [reservation, setReservation] = useState<ReservationData | null>(null);
   const [searchMode, setSearchMode] = useState(false);
   const [searchData, setSearchData] = useState({ name: '', phone: '' });
@@ -335,5 +335,22 @@ export default function ReservationCompletePage() {
         </section>
       </div>
     </MainLayout>
+  );
+}
+
+export default function ReservationCompletePage() {
+  return (
+    <Suspense fallback={
+      <MainLayout>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400 mx-auto mb-4"></div>
+            <p className="text-gray-600">로딩 중...</p>
+          </div>
+        </div>
+      </MainLayout>
+    }>
+      <ReservationContent />
+    </Suspense>
   );
 }
