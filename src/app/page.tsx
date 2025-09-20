@@ -29,6 +29,12 @@ export default function HomePage() {
       href: "/kakaotalk",
       color: "bg-yellow-500",
     },
+    {
+      title: "Instagram",
+      description: "Instagram-style social media application with photo sharing",
+      href: "/insta",
+      color: "bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500",
+    },
   ];
 
   return (
