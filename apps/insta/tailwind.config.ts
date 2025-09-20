@@ -13,6 +13,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'var(--font-noto-sans-kr)', 'system-ui', 'sans-serif'],
+        inter: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        noto: ['var(--font-noto-sans-kr)', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -61,6 +66,11 @@ const config = {
           success: '#27AE60',      // Success/completion feedback
           warning: '#F2C94C',      // Warning UI
           error: '#EB5757',        // Error messages
+          // Text color hierarchy
+          'text-primary': '#191919',   // Primary text (important, but softer than #000)
+          'text-secondary': '#737373', // Secondary text (descriptions, status)
+          'text-tertiary': '#A8A8A8',  // Tertiary text (timestamps, links)
+          'text-quaternary': '#C7C7C7', // Quaternary text (very light)
         },
       },
       borderRadius: {

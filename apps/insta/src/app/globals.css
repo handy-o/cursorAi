@@ -42,6 +42,11 @@
     --insta-success: 145 100% 40%;
     --insta-warning: 45 100% 65%;
     --insta-error: 0 100% 60%;
+    /* Instagram Text Colors */
+    --insta-text-primary: 0 0% 10%;
+    --insta-text-secondary: 0 0% 45%;
+    --insta-text-tertiary: 0 0% 66%;
+    --insta-text-quaternary: 0 0% 78%;
   }
 
   .dark {
@@ -82,6 +87,11 @@
     --insta-success: 145 100% 40%;
     --insta-warning: 45 100% 65%;
     --insta-error: 0 100% 60%;
+    /* Instagram Text Colors - Dark Mode */
+    --insta-text-primary: 0 0% 90%;
+    --insta-text-secondary: 0 0% 65%;
+    --insta-text-tertiary: 0 0% 55%;
+    --insta-text-quaternary: 0 0% 45%;
   }
 }
 
@@ -102,6 +112,12 @@
   .text-insta-success { color: hsl(var(--insta-success)); }
   .text-insta-warning { color: hsl(var(--insta-warning)); }
   .text-insta-error { color: hsl(var(--insta-error)); }
+  
+  /* Instagram Text Color Utilities */
+  .text-inst-text-primary { color: hsl(var(--insta-text-primary)); }
+  .text-inst-text-secondary { color: hsl(var(--insta-text-secondary)); }
+  .text-inst-text-tertiary { color: hsl(var(--insta-text-tertiary)); }
+  .text-inst-text-quaternary { color: hsl(var(--insta-text-quaternary)); }
   
   .bg-insta-primary { background-color: hsl(var(--insta-primary)); }
   .bg-insta-secondary { background-color: hsl(var(--insta-secondary)); }

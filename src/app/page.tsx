@@ -32,7 +32,7 @@ export default function HomePage() {
     {
       title: "Instagram",
       description: "Instagram-style social media application with photo sharing",
-      href: "/insta",
+      href: "/instagram",
       color: "bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500",
     },
   ];

@@ -1,11 +1,17 @@
 import type { NextConfig } from 'next';
+/** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',
+  trailingSlash: true,
+  basePath:  isDev ? "" : "/cursorAi/kakaotalk",
+  assetPrefix: isDev ? "" : "/cursorAi/kakaotalk/",
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         hostname: '**',
