@@ -23,6 +23,12 @@ export default function HomePage() {
       href: "/linktree",
       color: "bg-purple-500",
     },
+    {
+      title: "카카오톡",
+      description: "KakaoTalk-style chat application with modern UI",
+      href: "/kakaotalk",
+      color: "bg-yellow-500",
+    },
   ];
 
   return (
