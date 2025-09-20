@@ -277,13 +277,13 @@ export default function ClassesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/cursorAi/gpt/reservation/"
+                href="/reservation/"
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold px-8 py-4 text-lg rounded-full transition-colors"
               >
                 수업 예약하기
               </a>
               <a
-                href="/cursorAi/gpt/trainers/"
+                href="/trainers/"
                 className="border border-white text-white hover:bg-white hover:text-gray-800 px-8 py-4 text-lg rounded-full transition-colors"
               >
                 강사진 보기
