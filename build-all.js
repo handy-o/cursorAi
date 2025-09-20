@@ -25,7 +25,7 @@ try {
   if (fs.existsSync('out')) {
     const mainOut = fs.readdirSync('out');
     mainOut.forEach(file => {
-      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree') {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram') {
         fs.cpSync(`out/${file}`, `docs/${file}`, { recursive: true });
       }
     });
@@ -90,12 +90,50 @@ try {
   process.exit(1);
 }
 
+// Build Kakaotalk app
+console.log('📦 Building Kakaotalk app...');
+try {
+  execSync('cd apps/kakaotalk && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Kakaotalk build to docs/kakaotalk
+  if (fs.existsSync('apps/kakaotalk/out')) {
+    fs.cpSync('apps/kakaotalk/out', 'docs/kakaotalk', { recursive: true });
+    console.log('✅ Kakaotalk app built and copied successfully\n');
+  } else {
+    console.error('❌ Kakaotalk app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Kakaotalk app:', error.message);
+  process.exit(1);
+}
+
+// Build Instagram app
+console.log('📦 Building Instagram app...');
+try {
+  execSync('cd apps/insta && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Instagram build to docs/instagram
+  if (fs.existsSync('apps/insta/out')) {
+    fs.cpSync('apps/insta/out', 'docs/instagram', { recursive: true });
+    console.log('✅ Instagram app built and copied successfully\n');
+  } else {
+    console.error('❌ Instagram app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Instagram app:', error.message);
+  process.exit(1);
+}
+
 console.log('🎉 All applications built successfully!');
 console.log('📁 Output directory: ./docs');
 console.log('\n📋 Available routes:');
 console.log('  - /gpt');
 console.log('  - /landing');
 console.log('  - /linktree');
+console.log('  - /kakaotalk');
+console.log('  - /instagram');
 console.log('\n🌐 Deploy to GitHub Pages:');
 console.log('  1. Push to main branch');
 console.log('  2. GitHub Actions will automatically deploy');
