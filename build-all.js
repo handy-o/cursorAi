@@ -25,7 +25,7 @@ try {
   if (fs.existsSync('out')) {
     const mainOut = fs.readdirSync('out');
     mainOut.forEach(file => {
-      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram' && file !== 'otherColor' && file !== 'g2048') {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram' && file !== 'otherColor' && file !== 'g2048' && file !== 'simtest') {
         fs.cpSync(`out/${file}`, `docs/${file}`, { recursive: true });
       }
     });
@@ -162,6 +162,24 @@ try {
   process.exit(1);
 }
 
+// Build Simtest app
+console.log('📦 Building Simtest app...');
+try {
+  execSync('cd apps/simtest && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Simtest build to docs/simtest
+  if (fs.existsSync('apps/simtest/out')) {
+    fs.cpSync('apps/simtest/out', 'docs/simtest', { recursive: true });
+    console.log('✅ Simtest app built and copied successfully\n');
+  } else {
+    console.error('❌ Simtest app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Simtest app:', error.message);
+  process.exit(1);
+}
+
 console.log('🎉 All applications built successfully!');
 console.log('📁 Output directory: ./docs');
 console.log('\n📋 Available routes:');
@@ -172,6 +190,7 @@ console.log('  - /kakaotalk');
 console.log('  - /instagram');
 console.log('  - /otherColor');
 console.log('  - /g2048');
+console.log('  - /simtest');
 console.log('\n🌐 Deploy to GitHub Pages:');
 console.log('  1. Push to main branch');
 console.log('  2. GitHub Actions will automatically deploy');

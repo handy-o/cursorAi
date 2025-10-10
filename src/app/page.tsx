@@ -47,6 +47,12 @@ export default function HomePage() {
       href: "/g2048",
       color: "bg-gradient-to-r from-orange-400 to-yellow-500",
     },
+    {
+      title: "연애 & 결혼 가치관 테스트",
+      description: "당신의 연애 가치관 유형을 진단하는 심리 테스트",
+      href: "/simtest",
+      color: "bg-gradient-to-r from-violet-600 to-fuchsia-600",
+    },
   ];
 
   return (
