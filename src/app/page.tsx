@@ -41,6 +41,12 @@ export default function HomePage() {
       href: "/otherColor",
       color: "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
     },
+    {
+      title: "2048 게임",
+      description: "Classic 2048 puzzle game with smooth animations",
+      href: "/g2048",
+      color: "bg-gradient-to-r from-orange-400 to-yellow-500",
+    },
   ];
 
   return (
