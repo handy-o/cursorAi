@@ -35,6 +35,12 @@ export default function HomePage() {
       href: "/instagram",
       color: "bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500",
     },
+    {
+      title: "다른색깔 찾기",
+      description: "Color matching puzzle game with increasing difficulty",
+      href: "/otherColor",
+      color: "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
+    },
   ];
 
   return (

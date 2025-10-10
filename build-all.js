@@ -25,7 +25,7 @@ try {
   if (fs.existsSync('out')) {
     const mainOut = fs.readdirSync('out');
     mainOut.forEach(file => {
-      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram') {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram' && file !== 'otherColor') {
         fs.cpSync(`out/${file}`, `docs/${file}`, { recursive: true });
       }
     });
@@ -126,6 +126,24 @@ try {
   process.exit(1);
 }
 
+// Build OtherColor app
+console.log('📦 Building OtherColor app...');
+try {
+  execSync('cd apps/otherColor && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy OtherColor build to docs/otherColor
+  if (fs.existsSync('apps/otherColor/out')) {
+    fs.cpSync('apps/otherColor/out', 'docs/otherColor', { recursive: true });
+    console.log('✅ OtherColor app built and copied successfully\n');
+  } else {
+    console.error('❌ OtherColor app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build OtherColor app:', error.message);
+  process.exit(1);
+}
+
 console.log('🎉 All applications built successfully!');
 console.log('📁 Output directory: ./docs');
 console.log('\n📋 Available routes:');
@@ -134,6 +152,7 @@ console.log('  - /landing');
 console.log('  - /linktree');
 console.log('  - /kakaotalk');
 console.log('  - /instagram');
+console.log('  - /otherColor');
 console.log('\n🌐 Deploy to GitHub Pages:');
 console.log('  1. Push to main branch');
 console.log('  2. GitHub Actions will automatically deploy');
