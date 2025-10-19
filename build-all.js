@@ -234,6 +234,12 @@ try {
   // Copy HobbyFind build to docs/hobbyfind
   if (fs.existsSync('apps/hobbyfind/out')) {
     fs.cpSync('apps/hobbyfind/out', 'docs/hobbyfind', { recursive: true });
+    
+    // docs 폴더도 복사 (question.json 포함)
+    if (fs.existsSync('apps/hobbyfind/docs')) {
+      fs.cpSync('apps/hobbyfind/docs', 'docs/hobbyfind/docs', { recursive: true });
+    }
+    
     console.log('✅ HobbyFind app built and copied successfully\n');
   } else {
     console.error('❌ HobbyFind app build output not found');

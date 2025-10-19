@@ -22,7 +22,7 @@ export default function SurveyPage() {
   useEffect(() => {
     const loadSurveyData = async () => {
       try {
-        const response = await fetch('/docs/question.json')
+        const response = await fetch(`${process.env.NODE_ENV === 'production' ? '/cursorAi/hobbyfind' : ''}/docs/question.json`)
         const data = await response.json()
         setSurveyData(data)
       } catch (error) {
