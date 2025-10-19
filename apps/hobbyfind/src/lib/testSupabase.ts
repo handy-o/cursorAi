@@ -1,8 +1,14 @@
-import { supabase } from './supabase'
+import { supabase, isSupabaseConfigured } from './supabase'
 
 export async function testSupabaseConnection() {
   try {
     console.log('Testing Supabase connection...')
+    
+    // Supabase가 설정되지 않은 경우
+    if (!isSupabaseConfigured()) {
+      console.log('Supabase not configured - using placeholder')
+      return { success: false, error: 'Supabase not configured' }
+    }
     
     // 현재 인증 상태 확인
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -31,6 +37,12 @@ export async function testSupabaseConnection() {
 export async function testSurveyResultSave(userId: string) {
   try {
     console.log('Testing survey result save for user ID:', userId)
+    
+    // Supabase가 설정되지 않은 경우
+    if (!isSupabaseConfigured()) {
+      console.log('Supabase not configured - skipping test')
+      return { success: false, error: 'Supabase not configured' }
+    }
     
     // 현재 인증 상태 확인
     const { data: { user }, error: authError } = await supabase.auth.getUser()

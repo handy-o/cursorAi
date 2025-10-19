@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 export interface CustomUser {
   id: string
@@ -20,6 +20,13 @@ export function useAuth() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Supabase가 설정되지 않은 경우
+    if (!isSupabaseConfigured()) {
+      console.log('Supabase not configured, skipping auth')
+      setLoading(false)
+      return
+    }
+
     // Check if user is logged in from localStorage
     const userId = localStorage.getItem('user_id')
     if (userId) {
@@ -55,6 +62,12 @@ export function useAuth() {
 
   const signIn = async (email: string, password: string) => {
     try {
+      // Supabase가 설정되지 않은 경우
+      if (!isSupabaseConfigured()) {
+        console.log('Supabase not configured, cannot sign in')
+        return { data: null, error: new Error('Supabase not configured') }
+      }
+
       // 먼저 커스텀 함수 시도
       try {
         const { data, error } = await supabase.rpc('login_user', {

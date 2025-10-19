@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { supabase, isSupabaseConfigured } from './supabase'
 
 export interface SurveyResult {
   resultType: string
@@ -8,6 +8,12 @@ export interface SurveyResult {
 export async function saveSurveyResult(userId: string, resultType: string): Promise<{ error: Error | null }> {
   try {
     console.log('Saving survey result:', { userId, resultType })
+    
+    // Supabase가 설정되지 않은 경우 에러 반환
+    if (!isSupabaseConfigured()) {
+      console.log('Supabase not configured, skipping save')
+      return { error: null }
+    }
     
     // 먼저 사용자 프로필이 존재하는지 확인
     const { data: profileData, error: profileError } = await supabase
@@ -55,6 +61,12 @@ export async function saveSurveyResult(userId: string, resultType: string): Prom
 export async function getSurveyResult(userId: string): Promise<{ data: SurveyResult | null, error: Error | null }> {
   try {
     console.log('Fetching survey result for user:', userId)
+    
+    // Supabase가 설정되지 않은 경우 null 반환
+    if (!isSupabaseConfigured()) {
+      console.log('Supabase not configured, returning null')
+      return { data: null, error: null }
+    }
     
     const { data, error } = await supabase
       .from('profiles')
