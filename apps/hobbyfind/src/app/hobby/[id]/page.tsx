@@ -6,14 +6,14 @@ import RelatedHobbies from './RelatedHobbies'
 import { Star, MapPin, Heart, Calendar, Clock, Users, Share2, ArrowLeft, Phone, Mail } from 'lucide-react'
 import { hobbyData } from '@/lib/hobbyData'
 
-// 정적 내보내기를 위한 매개변수 생성 함수
-export async function generateStaticParams() {
-  // additionalDetails에 정의된 ID만 정적 생성
-  const availableIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  return availableIds.map((id) => ({
-    id: id.toString(),
-  }))
-}
+// 정적 내보내기를 위한 매개변수 생성 함수 - 제거 (동적 라우팅 사용)
+// export async function generateStaticParams() {
+//   // additionalDetails에 정의된 ID만 정적 생성
+//   const availableIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+//   return availableIds.map((id) => ({
+//     id: id.toString(),
+//   }))
+// }
 
 
 interface HobbyDetail {
