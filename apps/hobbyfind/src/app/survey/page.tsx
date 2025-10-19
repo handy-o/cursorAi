@@ -7,7 +7,6 @@ import { ChevronLeft, ChevronRight, Play, RotateCcw } from 'lucide-react'
 import { SurveyData, SurveyAnswer, SurveyResultType } from '@/types/survey'
 import { useAuth } from '@/hooks/useAuth'
 import { getSurveyResult, saveSurveyResult } from '@/lib/surveyApi'
-import { testSupabaseConnection, testSurveyResultSave } from '@/lib/testSupabase'
 
 export default function SurveyPage() {
   const [surveyData, setSurveyData] = useState<SurveyData | null>(null)
@@ -98,12 +97,6 @@ export default function SurveyPage() {
     setAnswers([])
   }
 
-  const handleTestSupabase = async () => {
-    if (user) {
-      await testSupabaseConnection()
-      await testSurveyResultSave(user.id)
-    }
-  }
 
   const getCurrentAnswer = () => {
     return answers.find(answer => answer.questionId === surveyData?.questions[currentQuestion]?.id)
@@ -209,13 +202,6 @@ export default function SurveyPage() {
                 시작하기
               </button>
               
-              {/* 디버깅용 버튼 */}
-              <button
-                onClick={handleTestSupabase}
-                className="mt-4 bg-gray-500 text-white px-4 py-2 rounded text-sm hover:bg-gray-600 transition-colors"
-              >
-                Supabase 연결 테스트
-              </button>
             </div>
           )}
 
