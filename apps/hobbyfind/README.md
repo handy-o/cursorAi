@@ -55,7 +55,7 @@ npm run deploy
 
 이 프로젝트는 GitHub Pages를 통해 자동 배포됩니다.
 
-- **Live URL**: https://handy-o.github.io/cursorAi/hobbyFind/
+- **Live URL**: https://handy-o.github.io/cursorAi/hobbyfind/
 
 ## 라이선스
 
