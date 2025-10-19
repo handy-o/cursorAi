@@ -11,6 +11,8 @@ export interface CustomUser {
   avatar_url: string | null
   email_verified: boolean
   created_at: string
+  survey_result_type?: string | null
+  survey_completed_at?: string | null
 }
 
 export function useAuth() {
@@ -80,6 +82,9 @@ export function useAuth() {
       }
 
       if (data.user) {
+        // localStorage에 사용자 ID 저장 (RLS 정책에서 사용)
+        localStorage.setItem('user_id', data.user.id)
+        
         // Supabase auth 사용자 정보를 profiles 테이블에서 가져오기
         const { data: profileData } = await supabase
           .from('profiles')

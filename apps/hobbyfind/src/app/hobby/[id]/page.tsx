@@ -502,7 +502,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
     location: baseHobby.location, // 공통 데이터의 location 사용
   } as HobbyDetail
 
-  const relatedHobbies = hobbyData
+  const relatedHobbies = (hobbyData || [])
     .filter(hobby => hobby.category === baseHobby.category && hobby.id !== hobbyId)
     .slice(0, 3)
     .map(hobby => ({
@@ -557,7 +557,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
           {/* 메인 콘텐츠 */}
           <div className="lg:col-span-2">
             {/* 이미지 갤러리 */}
-            <ImageGallery images={hobbyDetail.images} title={hobbyDetail.title} />
+            <ImageGallery images={hobbyDetail.images || []} title={hobbyDetail.title} />
 
             {/* 기본 정보 */}
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
@@ -628,7 +628,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
                 <div>
                   <h3 className="font-semibold text-neutral-500 mb-3">준비물</h3>
                   <ul className="space-y-1">
-                    {hobbyDetail.materials.map((material, index) => (
+                    {(hobbyDetail.materials || []).map((material, index) => (
                       <li key={index} className="text-neutral-400">• {material}</li>
                     ))}
                   </ul>
@@ -648,7 +648,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
               <div>
                 <h3 className="font-semibold text-neutral-500 mb-4">리뷰 ({hobbyDetail.reviewCount})</h3>
                 <div className="space-y-4">
-                  {reviews.map((review) => (
+                  {(reviews || []).map((review) => (
                     <div key={review.id} className="border-b border-neutral-200 pb-4 last:border-b-0">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-semibold text-neutral-500">{review.name}</div>
@@ -687,7 +687,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
                 <div className="mb-6">
                   <h4 className="font-semibold text-neutral-500 mb-3">일정 선택</h4>
                   <div className="space-y-2">
-                    {hobbyDetail.schedule.map((schedule, index) => (
+                    {(hobbyDetail.schedule || []).map((schedule, index) => (
                       <label key={index} className="flex items-center p-3 border border-neutral-200 rounded-lg cursor-pointer hover:bg-gray-50">
                         <input
                           type="radio"
@@ -724,20 +724,24 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
                 <div className="border-t border-neutral-200 pt-4">
                   <h4 className="font-semibold text-neutral-500 mb-3">문의하기</h4>
                   <div className="space-y-2">
-                    <a
-                      href={`tel:${hobbyDetail.contact.phone}`}
-                      className="flex items-center gap-2 text-neutral-400 hover:text-neutral-500"
-                    >
-                      <Phone className="h-4 w-4" />
-                      {hobbyDetail.contact.phone}
-                    </a>
-                    <a
-                      href={`mailto:${hobbyDetail.contact.email}`}
-                      className="flex items-center gap-2 text-neutral-400 hover:text-neutral-500"
-                    >
-                      <Mail className="h-4 w-4" />
-                      {hobbyDetail.contact.email}
-                    </a>
+                    {hobbyDetail.contact?.phone && (
+                      <a
+                        href={`tel:${hobbyDetail.contact.phone}`}
+                        className="flex items-center gap-2 text-neutral-400 hover:text-neutral-500"
+                      >
+                        <Phone className="h-4 w-4" />
+                        {hobbyDetail.contact.phone}
+                      </a>
+                    )}
+                    {hobbyDetail.contact?.email && (
+                      <a
+                        href={`mailto:${hobbyDetail.contact.email}`}
+                        className="flex items-center gap-2 text-neutral-400 hover:text-neutral-500"
+                      >
+                        <Mail className="h-4 w-4" />
+                        {hobbyDetail.contact.email}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

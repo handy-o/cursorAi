@@ -57,3 +57,4 @@ $$;
 -- 7. 특정 사용자의 이메일 확인 강제 완료 (개발용)
 -- SELECT public.confirm_user_email('your-email@example.com');
 
+

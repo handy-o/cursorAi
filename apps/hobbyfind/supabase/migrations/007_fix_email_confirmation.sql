@@ -20,3 +20,4 @@ SELECT
 FROM auth.users
 WHERE email = 'dding@ddong.com';
 
+

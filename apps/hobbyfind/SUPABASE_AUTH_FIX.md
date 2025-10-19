@@ -96,3 +96,4 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 - 브라우저 캐시 문제일 수 있으니 시크릿 모드에서 테스트
 - Supabase 대시보드에서 실시간으로 설정 상태 확인 가능
 
+

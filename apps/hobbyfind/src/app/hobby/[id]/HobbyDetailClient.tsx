@@ -45,7 +45,10 @@ export default function HobbyDetailClient({ hobbyDetail, isReservation }: HobbyD
       router.push('/login')
       return
     }
-    toggleWishlist(hobbyDetail)
+    toggleWishlist({
+      ...hobbyDetail,
+      image: hobbyDetail.images?.[0] || '', // 첫 번째 이미지 사용
+    })
   }
 
   const handleReservation = () => {

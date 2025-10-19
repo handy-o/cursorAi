@@ -30,3 +30,4 @@ export interface SurveyResultType {
   type: string
   score: number
 }
+

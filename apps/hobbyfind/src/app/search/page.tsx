@@ -7,6 +7,8 @@ import Header from '@/components/Header'
 import { useWishlist } from '@/hooks/useWishlist'
 import { useAuth } from '@/hooks/useAuth'
 import { Star, MapPin, Heart, Filter, SlidersHorizontal } from 'lucide-react'
+import { Suspense } from 'react'
+
 
 interface HobbyItem {
   id: number
@@ -25,6 +27,14 @@ interface HobbyItem {
 }
 
 export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchPageContent />
+    </Suspense>
+  )
+}
+
+function SearchPageContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -91,7 +101,6 @@ export default function SearchPage() {
       price: '45,000원',
       isOnSale: false,
       priceValue: 45000,
-      isOnSale: false,
       rating: 4.7,
       reviewCount: 89,
       image: 'https://picsum.photos/300/200?random=2',
@@ -105,7 +114,6 @@ export default function SearchPage() {
       price: '35,000원',
       isOnSale: false,
       priceValue: 35000,
-      isOnSale: false,
       rating: 4.9,
       reviewCount: 156,
       image: 'https://picsum.photos/300/200?random=3',

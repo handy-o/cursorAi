@@ -18,6 +18,8 @@ export interface Database {
           avatar_url: string | null
           created_at: string
           updated_at: string
+          survey_result_type: string | null
+          survey_completed_at: string | null
         }
         Insert: {
           id: string
@@ -27,6 +29,8 @@ export interface Database {
           avatar_url?: string | null
           created_at?: string
           updated_at?: string
+          survey_result_type?: string | null
+          survey_completed_at?: string | null
         }
         Update: {
           id?: string
@@ -36,6 +40,8 @@ export interface Database {
           avatar_url?: string | null
           created_at?: string
           updated_at?: string
+          survey_result_type?: string | null
+          survey_completed_at?: string | null
         }
       }
       categories: {
@@ -196,4 +202,5 @@ export interface Database {
     }
   }
 }
+
 

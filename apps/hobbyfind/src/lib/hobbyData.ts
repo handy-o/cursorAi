@@ -226,3 +226,4 @@ export const hobbyData: Hobby[] = [
     category: '독서',
   }
 ]
+

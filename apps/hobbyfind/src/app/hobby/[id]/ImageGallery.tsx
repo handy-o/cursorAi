@@ -9,6 +9,21 @@ interface ImageGalleryProps {
 
 export default function ImageGallery({ images, title }: ImageGalleryProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  
+  // images가 없거나 빈 배열인 경우 처리
+  if (!images || images.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+        <div className="aspect-w-16 aspect-h-12">
+          <img
+            src="https://picsum.photos/800/600?random=placeholder"
+            alt={title}
+            className="w-full h-96 object-cover"
+          />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">

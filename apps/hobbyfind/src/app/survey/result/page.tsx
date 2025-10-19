@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Header from '@/components/Header'
 import { Share2, ArrowRight, Star, MapPin, Heart } from 'lucide-react'
@@ -8,6 +8,14 @@ import { SurveyData } from '@/types/survey'
 import { hobbyData, Hobby } from '@/lib/hobbyData'
 
 export default function SurveyResultPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SurveyResultContent />
+    </Suspense>
+  )
+}
+
+function SurveyResultContent() {
   const [surveyData, setSurveyData] = useState<SurveyData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()

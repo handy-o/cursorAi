@@ -292,3 +292,4 @@ CREATE TRIGGER on_review_change
   AFTER INSERT OR UPDATE OR DELETE ON public.reviews
   FOR EACH ROW EXECUTE FUNCTION public.update_hobby_rating();
 
+

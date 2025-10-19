@@ -86,3 +86,4 @@ WHERE email = 'your-email@example.com';
 - 프로덕션에서는 보안을 위해 이메일 확인 활성화 필요
 - `auth.users` 테이블은 Supabase에서 관리하므로 직접 수정하지 말 것
 
+
