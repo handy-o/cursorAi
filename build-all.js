@@ -219,7 +219,17 @@ console.log('⏭️  Skipping Chatbot app build (has webpack issues)...');
 // Build HobbyFind app
 console.log('📦 Building HobbyFind app...');
 try {
-  execSync('cd apps/hobbyfind && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  // GitHub Actions에서 환경변수 설정
+  const env = {
+    ...process.env,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.SUPABASE_URL || 'https://mulqhihyyqaszphmrysv.supabase.co',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11bHFoaWh5eXFhc3pwaG1yeXN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2NjQ3MDQsImV4cCI6MjA3NjI0MDcwNH0.miPD3iqdsZDS6TdtA_pnA4c8WHcFp_jQiIOtRIvlMtM'
+  }
+  
+  execSync('cd apps/hobbyfind && npm install --legacy-peer-deps --no-audit && npm run build', { 
+    stdio: 'inherit',
+    env: env
+  });
   
   // Copy HobbyFind build to docs/hobbyfind
   if (fs.existsSync('apps/hobbyfind/out')) {
