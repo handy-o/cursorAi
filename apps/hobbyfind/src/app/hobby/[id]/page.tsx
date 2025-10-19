@@ -8,8 +8,10 @@ import { hobbyData } from '@/lib/hobbyData'
 
 // 정적 내보내기를 위한 매개변수 생성 함수
 export async function generateStaticParams() {
-  return hobbyData.map((hobby) => ({
-    id: hobby.id.toString(),
+  // additionalDetails에 정의된 ID만 정적 생성
+  const availableIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  return availableIds.map((id) => ({
+    id: id.toString(),
   }))
 }
 
