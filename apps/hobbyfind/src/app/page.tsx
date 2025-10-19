@@ -262,9 +262,9 @@ export default function Home() {
           </div>
 
           <div className="mt-12 text-center">
-            <a href="/search" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <Link href="/search" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               추천 취미 더보기
-            </a>
+            </Link>
           </div>
           
         </div>
@@ -305,9 +305,9 @@ export default function Home() {
           </div>
 
           <div className="mt-12 text-center">
-            <a href="/search?sale=할인중" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <Link href="/search?sale=할인중" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
               할인 중인 취미 더보기
-            </a>  
+            </Link>  
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Search, Menu, User, Heart, LogOut } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useWishlist } from '@/hooks/useWishlist'
@@ -32,22 +33,22 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center mr-2">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
               <span className="text-xl font-bold text-neutral-500">HobbyMate</span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/search" className="text-neutral-500 hover:text-primary-500 transition-colors">
+            <Link href="/search" className="text-neutral-500 hover:text-primary-500 transition-colors">
               탐색
-            </a>
-            <a href="/survey" className="text-neutral-500 hover:text-primary-500 transition-colors">
+            </Link>
+            <Link href="/survey" className="text-neutral-500 hover:text-primary-500 transition-colors">
               취미 찾기
-            </a>
+            </Link>
           </nav>
 
           {/* Search Bar - Desktop */}
@@ -115,12 +116,12 @@ export default function Header() {
                 </button>
               </div>
             ) : (
-              <a
+              <Link
                 href="/login"
                 className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"
               >
                 로그인
-              </a>
+              </Link>
             )}
 
             {/* Mobile Menu Button */}
@@ -137,12 +138,12 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-neutral-200 py-4">
             <div className="space-y-2">
-              <a href="/search" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
+              <Link href="/search" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
                 탐색
-              </a>
-              <a href="/survey" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
+              </Link>
+              <Link href="/survey" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
                 취미 찾기
-              </a>
+              </Link>
             </div>
             {/* Mobile Search */}
             <div className="mt-4 px-3">

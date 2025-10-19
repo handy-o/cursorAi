@@ -176,9 +176,9 @@ export default function LoginPage() {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="font-medium text-primary-500 hover:text-primary-600">
+                <button className="font-medium text-primary-500 hover:text-primary-600">
                   비밀번호를 잊으셨나요?
-                </a>
+                </button>
               </div>
             </div>
 
