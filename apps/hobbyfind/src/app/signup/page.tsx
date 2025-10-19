@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Header from '@/components/Header'
@@ -21,8 +21,32 @@ export default function SignupPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   
-  const { signUp } = useAuth()
+  const { signUp, user, loading: authLoading } = useAuth()
   const router = useRouter()
+
+  // 로그인된 사용자는 메인 페이지로 리다이렉트
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.push('/')
+    }
+  }, [authLoading, user, router])
+
+  // 로딩 중일 때는 로딩 화면 표시
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-neutral-500">로딩 중...</div>
+        </div>
+      </div>
+    )
+  }
+
+  // 로그인된 사용자는 리다이렉트 중이므로 아무것도 렌더링하지 않음
+  if (user) {
+    return null
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

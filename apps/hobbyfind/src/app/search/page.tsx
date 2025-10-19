@@ -14,6 +14,9 @@ interface HobbyItem {
   location: string
   price: string
   priceValue: number
+  originalPrice?: number
+  discountRate?: number
+  isOnSale: boolean
   rating: number
   reviewCount: number
   image: string
@@ -27,8 +30,14 @@ export default function SearchPage() {
 
   useEffect(() => {
     const query = searchParams.get('q')
+    const sale = searchParams.get('sale')
+    
     if (query) {
       setSearchQuery(query)
+    }
+    
+    if (sale === '할인중') {
+      setSaleFilter('할인 중')
     }
   }, [searchParams])
   
@@ -52,6 +61,7 @@ export default function SearchPage() {
   }, [searchParams])
   const [selectedLocation, setSelectedLocation] = useState('전체')
   const [priceRange, setPriceRange] = useState('전체')
+  const [saleFilter, setSaleFilter] = useState('전체')
   const [sortBy, setSortBy] = useState('인기순')
   const [showFilters, setShowFilters] = useState(false)
   const { isWished, toggleWishlist } = useWishlist()
@@ -63,8 +73,11 @@ export default function SearchPage() {
       id: 1,
       title: '수채화 드로잉 클래스',
       location: '강남구',
-      price: '50,000원',
-      priceValue: 50000,
+      price: '35,000원',
+      priceValue: 35000,
+      originalPrice: 50000,
+      discountRate: 30,
+      isOnSale: true,
       rating: 4.8,
       reviewCount: 127,
       image: 'https://picsum.photos/300/200?random=1',
@@ -76,7 +89,9 @@ export default function SearchPage() {
       title: '디지털 드로잉 입문',
       location: '서초구',
       price: '45,000원',
+      isOnSale: false,
       priceValue: 45000,
+      isOnSale: false,
       rating: 4.7,
       reviewCount: 89,
       image: 'https://picsum.photos/300/200?random=2',
@@ -88,7 +103,9 @@ export default function SearchPage() {
       title: '캐릭터 드로잉 워크샵',
       location: '마포구',
       price: '35,000원',
+      isOnSale: false,
       priceValue: 35000,
+      isOnSale: false,
       rating: 4.9,
       reviewCount: 156,
       image: 'https://picsum.photos/300/200?random=3',
@@ -100,6 +117,7 @@ export default function SearchPage() {
       title: '펜 드로잉 기초',
       location: '송파구',
       price: '30,000원',
+      isOnSale: false,
       priceValue: 30000,
       rating: 4.6,
       reviewCount: 73,
@@ -112,6 +130,7 @@ export default function SearchPage() {
       title: '아크릴 드로잉',
       location: '영등포구',
       price: '55,000원',
+      isOnSale: false,
       priceValue: 55000,
       rating: 4.5,
       reviewCount: 94,
@@ -124,6 +143,7 @@ export default function SearchPage() {
       title: '드로잉 테라피',
       location: '용산구',
       price: '40,000원',
+      isOnSale: false,
       priceValue: 40000,
       rating: 4.8,
       reviewCount: 112,
@@ -135,8 +155,11 @@ export default function SearchPage() {
       id: 7,
       title: '홈베이킹 클래스',
       location: '서초구',
-      price: '35,000원',
-      priceValue: 35000,
+      price: '32,000원',
+      priceValue: 32000,
+      originalPrice: 45000,
+      discountRate: 29,
+      isOnSale: true,
       rating: 4.9,
       reviewCount: 203,
       image: 'https://picsum.photos/300/200?random=7',
@@ -148,6 +171,7 @@ export default function SearchPage() {
       title: '한식 요리 교실',
       location: '강남구',
       price: '45,000원',
+      isOnSale: false,
       priceValue: 45000,
       rating: 4.7,
       reviewCount: 156,
@@ -160,6 +184,7 @@ export default function SearchPage() {
       title: '파스타 마스터 클래스',
       location: '마포구',
       price: '40,000원',
+      isOnSale: false,
       priceValue: 40000,
       rating: 4.6,
       reviewCount: 89,
@@ -171,8 +196,11 @@ export default function SearchPage() {
       id: 10,
       title: '요가 & 명상',
       location: '마포구',
-      price: '40,000원',
-      priceValue: 40000,
+      price: '28,000원',
+      priceValue: 28000,
+      originalPrice: 40000,
+      discountRate: 30,
+      isOnSale: true,
       rating: 4.7,
       reviewCount: 134,
       image: 'https://picsum.photos/300/200?random=10',
@@ -184,6 +212,7 @@ export default function SearchPage() {
       title: '필라테스 기초',
       location: '송파구',
       price: '50,000원',
+      isOnSale: false,
       priceValue: 50000,
       rating: 4.8,
       reviewCount: 98,
@@ -196,6 +225,7 @@ export default function SearchPage() {
       title: '헬스 트레이닝',
       location: '강남구',
       price: '60,000원',
+      isOnSale: false,
       priceValue: 60000,
       rating: 4.5,
       reviewCount: 167,
@@ -207,8 +237,11 @@ export default function SearchPage() {
       id: 13,
       title: '기타 레슨',
       location: '서초구',
-      price: '45,000원',
-      priceValue: 45000,
+      price: '32,000원',
+      priceValue: 32000,
+      originalPrice: 45000,
+      discountRate: 29,
+      isOnSale: true,
       rating: 4.6,
       reviewCount: 78,
       image: 'https://picsum.photos/300/200?random=13',
@@ -220,6 +253,7 @@ export default function SearchPage() {
       title: '피아노 입문',
       location: '영등포구',
       price: '55,000원',
+      isOnSale: false,
       priceValue: 55000,
       rating: 4.8,
       reviewCount: 145,
@@ -231,8 +265,11 @@ export default function SearchPage() {
       id: 15,
       title: '플라워 아레인지먼트',
       location: '송파구',
-      price: '45,000원',
-      priceValue: 45000,
+      price: '35,000원',
+      priceValue: 35000,
+      originalPrice: 50000,
+      discountRate: 30,
+      isOnSale: true,
       rating: 4.6,
       reviewCount: 112,
       image: 'https://picsum.photos/300/200?random=15',
@@ -244,6 +281,7 @@ export default function SearchPage() {
       title: '도자기 만들기',
       location: '용산구',
       price: '55,000원',
+      isOnSale: false,
       priceValue: 55000,
       rating: 4.7,
       reviewCount: 89,
@@ -255,8 +293,11 @@ export default function SearchPage() {
       id: 17,
       title: '독서 모임',
       location: '마포구',
-      price: '25,000원',
-      priceValue: 25000,
+      price: '18,000원',
+      priceValue: 18000,
+      originalPrice: 25000,
+      discountRate: 28,
+      isOnSale: true,
       rating: 4.4,
       reviewCount: 67,
       image: 'https://picsum.photos/300/200?random=17',
@@ -268,6 +309,7 @@ export default function SearchPage() {
       title: '책 리뷰 클럽',
       location: '강남구',
       price: '30,000원',
+      isOnSale: false,
       priceValue: 30000,
       rating: 4.5,
       reviewCount: 43,
@@ -280,6 +322,7 @@ export default function SearchPage() {
       title: '수영 기초',
       location: '송파구',
       price: '45,000원',
+      isOnSale: false,
       priceValue: 45000,
       rating: 4.7,
       reviewCount: 89,
@@ -292,6 +335,7 @@ export default function SearchPage() {
       title: '테니스 레슨',
       location: '강남구',
       price: '65,000원',
+      isOnSale: false,
       priceValue: 65000,
       rating: 4.6,
       reviewCount: 67,
@@ -304,6 +348,7 @@ export default function SearchPage() {
       title: '바리스타 자격증',
       location: '마포구',
       price: '120,000원',
+      isOnSale: false,
       priceValue: 120000,
       rating: 4.8,
       reviewCount: 156,
@@ -316,6 +361,7 @@ export default function SearchPage() {
       title: '일본어 회화',
       location: '서초구',
       price: '40,000원',
+      isOnSale: false,
       priceValue: 40000,
       rating: 4.5,
       reviewCount: 98,
@@ -328,6 +374,7 @@ export default function SearchPage() {
       title: '스크래치보드 아트',
       location: '영등포구',
       price: '35,000원',
+      isOnSale: false,
       priceValue: 35000,
       rating: 4.4,
       reviewCount: 54,
@@ -340,6 +387,7 @@ export default function SearchPage() {
       title: '드럼 레슨',
       location: '용산구',
       price: '50,000원',
+      isOnSale: false,
       priceValue: 50000,
       rating: 4.7,
       reviewCount: 78,
@@ -352,6 +400,7 @@ export default function SearchPage() {
       title: '양봉 체험',
       location: '송파구',
       price: '45,000원',
+      isOnSale: false,
       priceValue: 45000,
       rating: 4.6,
       reviewCount: 34,
@@ -364,6 +413,7 @@ export default function SearchPage() {
       title: '명상 & 요가',
       location: '강남구',
       price: '40,000원',
+      isOnSale: false,
       priceValue: 40000,
       rating: 4.8,
       reviewCount: 123,
@@ -376,6 +426,7 @@ export default function SearchPage() {
       title: '캘리그래피',
       location: '마포구',
       price: '35,000원',
+      isOnSale: false,
       priceValue: 35000,
       rating: 4.5,
       reviewCount: 87,
@@ -388,6 +439,7 @@ export default function SearchPage() {
       title: '스시 만들기',
       location: '서초구',
       price: '80,000원',
+      isOnSale: false,
       priceValue: 80000,
       rating: 4.9,
       reviewCount: 145,
@@ -400,6 +452,7 @@ export default function SearchPage() {
       title: '퍼즐 모임',
       location: '영등포구',
       price: '20,000원',
+      isOnSale: false,
       priceValue: 20000,
       rating: 4.3,
       reviewCount: 45,
@@ -412,6 +465,7 @@ export default function SearchPage() {
       title: '볼링 레슨',
       location: '용산구',
       price: '35,000원',
+      isOnSale: false,
       priceValue: 35000,
       rating: 4.4,
       reviewCount: 56,
@@ -424,6 +478,7 @@ export default function SearchPage() {
       title: '집중력 향상 미술 치료',
       location: '강남구',
       price: '60,000원',
+      isOnSale: false,
       priceValue: 60000,
       rating: 4.7,
       reviewCount: 89,
@@ -475,6 +530,12 @@ export default function SearchPage() {
         }
       }
       
+      // 할인 필터
+      if (saleFilter !== '전체') {
+        if (saleFilter === '할인 중' && !hobby.isOnSale) return false
+        if (saleFilter === '할인 없음' && hobby.isOnSale) return false
+      }
+      
       return true
     })
 
@@ -498,19 +559,34 @@ export default function SearchPage() {
     }
 
     return filtered
-  }, [searchQuery, selectedCategory, selectedLocation, priceRange, sortBy])
+  }, [searchQuery, selectedCategory, selectedLocation, priceRange, saleFilter, sortBy])
 
 
   const categories = ['전체', '미술', '요리', '운동', '음악', '공예', '독서']
   const locations = ['전체', '강남구', '서초구', '마포구', '송파구', '영등포구', '용산구']
   const priceRanges = ['전체', '~30,000원', '30,000~50,000원', '50,000~100,000원', '100,000원~']
 
+  const resetFilters = () => {
+    setSelectedCategory('전체')
+    setSelectedLocation('전체')
+    setPriceRange('전체')
+    setSaleFilter('전체')
+  }
+
   const FilterPanel = () => (
     <div className="bg-white border border-neutral-200 rounded-lg p-6">
-      <h3 className="font-semibold text-neutral-500 mb-4 flex items-center">
-        <Filter className="h-4 w-4 mr-2" />
-        필터
-      </h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-semibold text-neutral-500 flex items-center">
+          <Filter className="h-4 w-4 mr-2" />
+          필터
+        </h3>
+        <button
+          onClick={resetFilters}
+          className="text-sm text-blue-600 hover:text-blue-700 font-medium px-3 py-1 rounded-md hover:bg-blue-50 transition-colors"
+        >
+          초기화
+        </button>
+      </div>
       
       {/* 카테고리 */}
       <div className="mb-6">
@@ -569,6 +645,46 @@ export default function SearchPage() {
               <span className="text-sm text-neutral-400">{range}</span>
             </label>
           ))}
+        </div>
+      </div>
+
+      {/* 할인 */}
+      <div className="mb-6">
+        <h4 className="text-sm font-medium text-neutral-500 mb-3">할인</h4>
+        <div className="space-y-2">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="saleFilter"
+              value="전체"
+              checked={saleFilter === '전체'}
+              onChange={(e) => setSaleFilter(e.target.value)}
+              className="mr-2"
+            />
+            <span className="text-sm text-neutral-400">전체</span>
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="saleFilter"
+              value="할인 중"
+              checked={saleFilter === '할인 중'}
+              onChange={(e) => setSaleFilter(e.target.value)}
+              className="mr-2"
+            />
+            <span className="text-sm text-red-500 font-medium">할인 중</span>
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="saleFilter"
+              value="할인 없음"
+              checked={saleFilter === '할인 없음'}
+              onChange={(e) => setSaleFilter(e.target.value)}
+              className="mr-2"
+            />
+            <span className="text-sm text-neutral-400">할인 없음</span>
+          </label>
         </div>
       </div>
 
@@ -661,9 +777,11 @@ export default function SearchPage() {
                       >
                         <Heart className={`h-4 w-4 ${user && isWished(hobby.id) ? 'text-red-500 fill-red-500' : 'text-gray-400'}`} />
                       </button>
-                      <div className="absolute top-3 left-3 bg-primary-500 text-white px-2 py-1 rounded text-xs font-semibold sr-only">
-                        {hobby.category}
-                      </div>
+                      {hobby.isOnSale && (
+                        <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                          {hobby.discountRate}% 할인
+                        </div>
+                      )}
                     </div>
                     <div className="p-4">
                       <h3 className="font-semibold text-neutral-500 mb-2">{hobby.title}</h3>
@@ -677,7 +795,16 @@ export default function SearchPage() {
                           <span className="text-sm font-medium mr-1">{hobby.rating}</span>
                           <span className="text-xs text-neutral-400">({hobby.reviewCount})</span>
                         </div>
-                        <span className="text-sm font-semibold text-blue-600">{hobby.price}</span>
+                        <div className="text-right">
+                          {hobby.isOnSale ? (
+                            <div className="flex flex-col items-end">
+                              <span className="text-xs text-neutral-400 line-through">{hobby.originalPrice?.toLocaleString()}원</span>
+                              <span className="text-sm font-semibold text-red-500">{hobby.price}</span>
+                            </div>
+                          ) : (
+                            <span className="text-sm font-semibold text-blue-600">{hobby.price}</span>
+                          )}
+                        </div>
                       </div>
                       <Link href={`/hobby/${hobby.id}`}>
                         <button className="w-full border-2 border-neutral-400 text-neutral-500 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors">

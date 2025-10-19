@@ -7,6 +7,7 @@ import Header from '@/components/Header'
 import { useAuth } from '@/hooks/useAuth'
 import { useWishlist } from '@/hooks/useWishlist'
 import { Star, MapPin, Heart, Play } from 'lucide-react'
+import { hobbyData } from '@/lib/hobbyData'
 
 export default function Home() {
   const { wishlist, isWished, toggleWishlist } = useWishlist()
@@ -14,116 +15,7 @@ export default function Home() {
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>('미술')
 
-  const recommendedHobbies = [
-    {
-      id: 1,
-      title: '수채화 드로잉',
-      location: '강남구',
-      price: '50,000원',
-      rating: 4.8,
-      image: 'https://picsum.photos/300/200?random=1',
-      category: '미술',
-    },
-    {
-      id: 2,
-      title: '홈베이킹 클래스',
-      location: '서초구',
-      price: '35,000원',
-      rating: 4.9,
-      image: 'https://picsum.photos/300/200?random=2',
-      category: '요리',
-    },
-    {
-      id: 3,
-      title: '요가 & 명상',
-      location: '마포구',
-      price: '40,000원',
-      rating: 4.7,
-      image: 'https://picsum.photos/300/200?random=3',
-      category: '운동',
-    },
-    {
-      id: 4,
-      title: '플라워 아레인지먼트',
-      location: '송파구',
-      price: '45,000원',
-      rating: 4.6,
-      image: 'https://picsum.photos/300/200?random=4',
-      category: '공예',
-    },
-    {
-      id: 5,
-      title: '기타 레슨',
-      location: '서초구',
-      price: '45,000원',
-      rating: 4.6,
-      image: 'https://picsum.photos/300/200?random=13',
-      category: '음악',
-    },
-    {
-      id: 6,
-      title: '독서 모임',
-      location: '마포구',
-      price: '25,000원',
-      rating: 4.4,
-      image: 'https://picsum.photos/300/200?random=17',
-      category: '독서',
-    },
-    {
-      id: 7,
-      title: '필라테스 기초',
-      location: '송파구',
-      price: '50,000원',
-      rating: 4.8,
-      image: 'https://picsum.photos/300/200?random=11',
-      category: '운동',
-    },
-    {
-      id: 8,
-      title: '도자기 만들기',
-      location: '용산구',
-      price: '55,000원',
-      rating: 4.7,
-      image: 'https://picsum.photos/300/200?random=16',
-      category: '공예',
-    },
-    {
-      id: 9,
-      title: '바리스타 자격증',
-      location: '마포구',
-      price: '120,000원',
-      rating: 4.8,
-      image: 'https://picsum.photos/300/200?random=21',
-      category: '요리',
-    },
-    {
-      id: 10,
-      title: '캘리그래피',
-      location: '마포구',
-      price: '35,000원',
-      rating: 4.5,
-      image: 'https://picsum.photos/300/200?random=27',
-      category: '미술',
-    },
-    {
-      id: 11,
-      title: '테니스 레슨',
-      location: '강남구',
-      price: '65,000원',
-      rating: 4.6,
-      image: 'https://picsum.photos/300/200?random=20',
-      category: '운동',
-    },
-    {
-      id: 12,
-      title: '드럼 레슨',
-      location: '용산구',
-      price: '50,000원',
-      rating: 4.7,
-      image: 'https://picsum.photos/300/200?random=24',
-      category: '음악',
-    },
-  ]
+  const recommendedHobbies = hobbyData.slice(0, 12)
 
 
   const events = [
@@ -300,7 +192,7 @@ export default function Home() {
               </p>
               <button 
                 onClick={() => router.push(`/search?q=${selectedCategory}`)}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
               >
                 {selectedCategory} 취미 탐색하기
               </button>
@@ -309,47 +201,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 할인 중인 클래스 */}
-      <section className="py-16">
+       {/* 추천 취미 */}
+       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-neutral-500 mb-4">지금 할인 중인 취미</h2>
-            <p className="text-lg text-neutral-400">한정 시간 특가로 만나는 특별한 취미 클래스</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {events.map((event) => (
-              <Link key={event.id} href={`/hobby/event/${event.id}`}>
-                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={event.image}
-                      alt={event.title}
-                      className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                      {event.discountRate} 할인
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-semibold text-neutral-500 mb-2">{event.title}</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-neutral-400 line-through">{event.originalPrice}</span>
-                      <span className="text-neutral-700 font-semibold">{event.discountedPrice}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 추천 취미 */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-neutral-500 mb-4">추천 취미</h2>
+            <h2 className="text-3xl font-bold text-neutral-500 mb-4">추천 취미 활동</h2>
             <p className="text-lg text-neutral-400">인기 있는 취미들을 만나보세요</p>
           </div>
           
@@ -403,6 +259,55 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href="/search" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              추천 취미 더보기
+            </a>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* 할인 중인 클래스 */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-neutral-500 mb-4">지금 할인 중인 취미</h2>
+            <p className="text-lg text-neutral-400">한정 시간 특가로 만나는 특별한 취미 클래스</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {events.map((event) => (
+              <Link key={event.id} href={`/hobby/event/${event.id}`}>
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                      {event.discountRate} 할인
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-semibold text-neutral-500 mb-2">{event.title}</h3>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-neutral-400 line-through">{event.originalPrice}</span>
+                      <span className="text-neutral-700 font-semibold">{event.discountedPrice}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href="/search?sale=할인중" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              할인 중인 취미 더보기
+            </a>  
           </div>
         </div>
       </section>

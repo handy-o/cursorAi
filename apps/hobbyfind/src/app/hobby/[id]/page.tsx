@@ -4,23 +4,13 @@ import HobbyDetailClient from './HobbyDetailClient'
 import ImageGallery from './ImageGallery'
 import RelatedHobbies from './RelatedHobbies'
 import { Star, MapPin, Heart, Calendar, Clock, Users, Share2, ArrowLeft, Phone, Mail } from 'lucide-react'
+import { hobbyData } from '@/lib/hobbyData'
 
 // 정적 내보내기를 위한 매개변수 생성 함수
 export async function generateStaticParams() {
-  return [
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' },
-    { id: '6' },
-    { id: '7' },
-    { id: '8' },
-    { id: '9' },
-    { id: '10' },
-    { id: '11' },
-    { id: '12' }
-  ]
+  return hobbyData.map((hobby) => ({
+    id: hobby.id.toString(),
+  }))
 }
 
 
@@ -51,18 +41,19 @@ interface HobbyDetail {
 
 export default async function HobbyDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const hobbyId = id
+  const hobbyId = parseInt(id)
 
-  // ID별 취미 상세 데이터
-  const hobbyDetails: Record<string, HobbyDetail> = {
-    '1': {
-      id: 1,
-      title: '수채화 드로잉 클래스',
-      category: '미술',
-      location: '강남구 테헤란로 123',
-      price: '50,000원',
+  // 공통 취미 데이터에서 기본 정보 가져오기
+  const baseHobby = hobbyData.find(hobby => hobby.id === hobbyId)
+  
+  if (!baseHobby) {
+    notFound()
+  }
+
+  // 추가 세부 정보 (공통 데이터에 없는 정보들)
+  const additionalDetails: Record<number, Partial<HobbyDetail>> = {
+    1: {
       originalPrice: '70,000원',
-      rating: 4.8,
       reviewCount: 127,
       images: [
         'https://picsum.photos/800/600?random=1',
@@ -101,13 +92,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'art@example.com',
       },
     },
-    '2': {
-      id: 2,
-      title: '홈베이킹 클래스',
-      category: '요리',
-      location: '서초구 서초대로 456',
-      price: '35,000원',
-      rating: 4.9,
+    2: {
       reviewCount: 203,
       images: [
         'https://picsum.photos/800/600?random=2',
@@ -144,13 +129,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'baking@example.com',
       },
     },
-    '3': {
-      id: 3,
-      title: '요가 & 명상',
-      category: '운동',
-      location: '마포구 홍대입구역 789',
-      price: '40,000원',
-      rating: 4.7,
+    3: {
       reviewCount: 134,
       images: [
         'https://picsum.photos/800/600?random=3',
@@ -187,13 +166,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'yoga@example.com',
       },
     },
-    '4': {
-      id: 4,
-      title: '플라워 아레인지먼트',
-      category: '공예',
-      location: '송파구 올림픽공원 101',
-      price: '45,000원',
-      rating: 4.6,
+    4: {
       reviewCount: 89,
       images: [
         'https://picsum.photos/800/600?random=4',
@@ -230,13 +203,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'flower@example.com',
       },
     },
-    '5': {
-      id: 5,
-      title: '기타 레슨',
-      category: '음악',
-      location: '서초구 서초대로 234',
-      price: '45,000원',
-      rating: 4.6,
+    5: {
       reviewCount: 156,
       images: [
         'https://picsum.photos/800/600?random=5',
@@ -273,13 +240,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'guitar@example.com',
       },
     },
-    '6': {
-      id: 6,
-      title: '독서 모임',
-      category: '독서',
-      location: '강남구 테헤란로 567',
-      price: '15,000원',
-      rating: 4.8,
+    6: {
       reviewCount: 67,
       images: [
         'https://picsum.photos/800/600?random=6',
@@ -315,13 +276,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'book@example.com',
       },
     },
-    '7': {
-      id: 7,
-      title: '도자기 만들기',
-      category: '공예',
-      location: '성동구 성수동 123',
-      price: '55,000원',
-      rating: 4.7,
+    7: {
       reviewCount: 98,
       images: [
         'https://picsum.photos/800/600?random=7',
@@ -358,13 +313,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'pottery@example.com',
       },
     },
-    '8': {
-      id: 8,
-      title: '필라테스',
-      category: '운동',
-      location: '영등포구 여의도 456',
-      price: '42,000원',
-      rating: 4.9,
+    8: {
       reviewCount: 145,
       images: [
         'https://picsum.photos/800/600?random=8',
@@ -400,13 +349,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'pilates@example.com',
       },
     },
-    '9': {
-      id: 9,
-      title: '피아노 레슨',
-      category: '음악',
-      location: '서초구 서초대로 789',
-      price: '60,000원',
-      rating: 4.8,
+    9: {
       reviewCount: 112,
       images: [
         'https://picsum.photos/800/600?random=9',
@@ -442,13 +385,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'piano@example.com',
       },
     },
-    '10': {
-      id: 10,
-      title: '캘리그래피',
-      category: '미술',
-      location: '마포구 상수동 234',
-      price: '38,000원',
-      rating: 4.5,
+    10: {
       reviewCount: 76,
       images: [
         'https://picsum.photos/800/600?random=10',
@@ -484,13 +421,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'calligraphy@example.com',
       },
     },
-    '11': {
-      id: 11,
-      title: '쿠킹 클래스',
-      category: '요리',
-      location: '강남구 압구정로 345',
-      price: '48,000원',
-      rating: 4.7,
+    11: {
       reviewCount: 134,
       images: [
         'https://picsum.photos/800/600?random=11',
@@ -526,13 +457,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
         email: 'cooking@example.com',
       },
     },
-    '12': {
-      id: 12,
-      title: '헬스 트레이닝',
-      category: '운동',
-      location: '송파구 잠실동 678',
-      price: '65,000원',
-      rating: 4.6,
+    12: {
       reviewCount: 89,
       images: [
         'https://picsum.photos/800/600?random=12',
@@ -570,38 +495,24 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
     }
   }
 
-  const hobbyDetail = hobbyDetails[hobbyId as string]
+  // 공통 데이터와 추가 세부 정보를 합쳐서 완전한 취미 정보 생성
+  const hobbyDetail: HobbyDetail = {
+    ...baseHobby,
+    ...additionalDetails[hobbyId],
+    location: baseHobby.location, // 공통 데이터의 location 사용
+  } as HobbyDetail
 
-  if (!hobbyDetail) {
-    notFound()
-  }
-
-  const relatedHobbies = [
-    {
-      id: 2,
-      title: '디지털 드로잉 입문',
-      location: '서초구',
-      price: '45,000원',
-      rating: 4.7,
-      image: 'https://picsum.photos/300/200?random=2',
-    },
-    {
-      id: 3,
-      title: '캐릭터 드로잉 워크샵',
-      location: '마포구',
-      price: '35,000원',
-      rating: 4.9,
-      image: 'https://picsum.photos/300/200?random=3',
-    },
-    {
-      id: 4,
-      title: '펜 드로잉 기초',
-      location: '송파구',
-      price: '30,000원',
-      rating: 4.6,
-      image: 'https://picsum.photos/300/200?random=4',
-    },
-  ]
+  const relatedHobbies = hobbyData
+    .filter(hobby => hobby.category === baseHobby.category && hobby.id !== hobbyId)
+    .slice(0, 3)
+    .map(hobby => ({
+      id: hobby.id,
+      title: hobby.title,
+      location: hobby.location,
+      price: hobby.price,
+      rating: hobby.rating,
+      image: hobby.image,
+    }))
 
   const reviews = [
     {

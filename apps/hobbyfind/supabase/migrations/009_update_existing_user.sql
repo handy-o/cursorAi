@@ -26,3 +26,4 @@ WHERE email = 'dding@ddong.com';
 -- SELECT verify_password('123123', password_hash) as password_valid
 -- FROM public.profiles
 -- WHERE email = 'dding@ddong.com';
+

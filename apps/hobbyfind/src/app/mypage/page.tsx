@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import { useAuth } from '@/hooks/useAuth'
 import { useWishlist } from '@/hooks/useWishlist'
 import { Star, MapPin, Heart, Calendar, Clock, Settings, User, Mail, Phone } from 'lucide-react'
+import { hobbyData } from '@/lib/hobbyData'
 
 export default function MyPage() {
   const [activeTab, setActiveTab] = useState('wishlist')
@@ -42,7 +43,8 @@ export default function MyPage() {
   const reservations = [
     {
       id: 1,
-      title: '수채화 드로잉 클래스',
+      hobbyId: 1, // 수채화 드로잉
+      title: '수채화 드로잉',
       location: '강남구',
       price: '50,000원',
       image: 'https://picsum.photos/300/200?random=1',
@@ -53,6 +55,7 @@ export default function MyPage() {
     },
     {
       id: 2,
+      hobbyId: 3, // 요가 & 명상
       title: '요가 & 명상',
       location: '마포구',
       price: '40,000원',
@@ -64,10 +67,11 @@ export default function MyPage() {
     },
     {
       id: 3,
-      title: '캐릭터 드로잉 워크샵',
+      hobbyId: 10, // 캘리그래피
+      title: '캘리그래피',
       location: '마포구',
       price: '35,000원',
-      image: 'https://picsum.photos/300/200?random=3',
+      image: 'https://picsum.photos/300/200?random=10',
       date: '2024.03.30',
       time: '15:00 - 17:00',
       status: 'completed',
@@ -192,7 +196,10 @@ export default function MyPage() {
                 {wishlist.map((hobby) => (
                   <div key={hobby.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden group">
                     <div className="relative">
-                      <div className="overflow-hidden rounded-t-lg">
+                      <div 
+                        className="overflow-hidden rounded-t-lg cursor-pointer"
+                        onClick={() => router.push(`/hobby/${hobby.id}`)}
+                      >
                         <img
                           src={hobby.image}
                           alt={hobby.title}
@@ -210,7 +217,12 @@ export default function MyPage() {
                       </button>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-semibold text-neutral-500 mb-2">{hobby.title}</h3>
+                      <h3 
+                        className="font-semibold text-neutral-500 mb-2 cursor-pointer hover:text-primary-500 transition-colors"
+                        onClick={() => router.push(`/hobby/${hobby.id}`)}
+                      >
+                        {hobby.title}
+                      </h3>
                       <div className="flex items-center text-sm text-neutral-400 mb-2">
                         <MapPin className="h-4 w-4 mr-1" />
                         {hobby.location}
@@ -225,7 +237,10 @@ export default function MyPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-neutral-400">찜한 날: {hobby.addedDate}</span>
                         <div className="flex gap-2">
-                          <button className="flex-1 border-2 border-neutral-400 text-neutral-500 py-2 rounded-lg font-semibold hover:bg-primary-500 hover:border-primary-500 hover:text-white transition-colors text-sm">
+                          <button 
+                            onClick={() => router.push(`/hobby/${hobby.id}`)}
+                            className="flex-1 border-2 border-neutral-400 text-neutral-500 py-2 px-4 rounded-lg font-semibold hover:bg-primary-500 hover:border-primary-500 hover:text-white transition-colors text-sm"
+                          >
                             예약하기
                           </button>
                           <button 
@@ -299,7 +314,10 @@ export default function MyPage() {
                         <div className="flex flex-col md:flex-row gap-3">
                           <span className="text-xs text-neutral-400">예약일: {reservation.bookingDate}</span>
                           <div className="flex gap-2 ml-auto">
-                            <button className="px-4 py-2 border border-neutral-200 rounded-lg text-neutral-500 hover:bg-gray-50 text-sm">
+                            <button 
+                              onClick={() => router.push(`/hobby/${reservation.hobbyId}`)}
+                              className="px-4 py-2 border border-neutral-200 rounded-lg text-neutral-500 hover:bg-gray-50 text-sm"
+                            >
                               상세보기
                             </button>
                             {reservation.status === 'confirmed' && (

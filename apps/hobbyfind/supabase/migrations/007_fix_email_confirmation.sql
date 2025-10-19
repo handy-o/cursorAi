@@ -19,3 +19,4 @@ SELECT
   last_sign_in_at
 FROM auth.users
 WHERE email = 'dding@ddong.com';
+

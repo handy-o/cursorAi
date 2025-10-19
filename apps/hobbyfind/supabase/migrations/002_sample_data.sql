@@ -151,3 +151,4 @@ INSERT INTO public.reviews (user_id, hobby_id, rating, comment) VALUES
 -- Note: These will be inserted when we have actual user profiles
 -- For now, we'll create some sample reviews without user_id (which will need to be updated later)
 -- You can run these after creating user accounts
+

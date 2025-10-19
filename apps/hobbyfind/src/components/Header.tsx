@@ -45,8 +45,8 @@ export default function Header() {
             <a href="/search" className="text-neutral-500 hover:text-primary-500 transition-colors">
               탐색
             </a>
-            <a href="/event" className="text-neutral-500 hover:text-primary-500 transition-colors">
-              이벤트
+            <a href="/survey" className="text-neutral-500 hover:text-primary-500 transition-colors">
+              취미 찾기
             </a>
           </nav>
 
@@ -140,8 +140,8 @@ export default function Header() {
               <a href="/search" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
                 탐색
               </a>
-              <a href="/event" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
-                이벤트
+              <a href="/survey" className="block px-3 py-2 text-neutral-500 hover:text-primary-500">
+                취미 찾기
               </a>
             </div>
             {/* Mobile Search */}
