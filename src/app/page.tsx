@@ -53,6 +53,12 @@ export default function HomePage() {
       href: "/simtest",
       color: "bg-gradient-to-r from-violet-600 to-fuchsia-600",
     },
+    {
+      title: "취미 찾기",
+      description: "취미 유형 테스트 및 커뮤니티 플랫폼",
+      href: "/hobbyfind",
+      color: "bg-gradient-to-r from-orange-500 to-red-500",
+    },
   ];
 
   return (

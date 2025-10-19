@@ -3,8 +3,8 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === 'production' ? '/cursorAi/hobbyFind' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/cursorAi/hobbyFind' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/cursorAi/hobbyfind' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/cursorAi/hobbyfind' : '',
   images: {
     unoptimized: true
   },
