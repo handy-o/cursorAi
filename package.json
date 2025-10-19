@@ -11,6 +11,7 @@
     "build:landing": "cd apps/landing && npm run build",
     "build:linktree": "cd apps/linktree && npm run build",
     "build:all": "node build-all.js",
+    "build:hobbyfind": "node build-hobbyfind.js",
     "dev:gpt": "cd apps/gpt && npm run dev",
     "dev:landing": "cd apps/landing && npm run dev",
     "dev:linktree": "cd apps/linktree && npm run dev"

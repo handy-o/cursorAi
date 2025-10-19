@@ -25,7 +25,7 @@ try {
   if (fs.existsSync('out')) {
     const mainOut = fs.readdirSync('out');
     mainOut.forEach(file => {
-      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram' && file !== 'otherColor' && file !== 'g2048' && file !== 'simtest') {
+      if (file !== 'gpt' && file !== 'landing' && file !== 'linktree' && file !== 'kakaotalk' && file !== 'instagram' && file !== 'otherColor' && file !== 'g2048' && file !== 'simtest' && file !== 'supabase' && file !== 'chatbot' && file !== 'hobbyfind' && file !== 'twitter') {
         fs.cpSync(`out/${file}`, `docs/${file}`, { recursive: true });
       }
     });
@@ -180,6 +180,78 @@ try {
   process.exit(1);
 }
 
+// Build Supanovabase app
+console.log('📦 Building Supanovabase app...');
+try {
+  execSync('cd apps/supanovabase && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Supanovabase build to docs/supabase
+  if (fs.existsSync('apps/supanovabase/out')) {
+    fs.cpSync('apps/supanovabase/out', 'docs/supabase', { recursive: true });
+    console.log('✅ Supanovabase app built and copied successfully\n');
+  } else {
+    console.error('❌ Supanovabase app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Supanovabase app:', error.message);
+  process.exit(1);
+}
+
+// Build Chatbot app
+console.log('📦 Building Chatbot app...');
+try {
+  execSync('cd apps/chatbot && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Chatbot build to docs/chatbot
+  if (fs.existsSync('apps/chatbot/out')) {
+    fs.cpSync('apps/chatbot/out', 'docs/chatbot', { recursive: true });
+    console.log('✅ Chatbot app built and copied successfully\n');
+  } else {
+    console.error('❌ Chatbot app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Chatbot app:', error.message);
+  process.exit(1);
+}
+
+// Build HobbyFind app
+console.log('📦 Building HobbyFind app...');
+try {
+  execSync('cd apps/hobbyfind && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy HobbyFind build to docs/hobbyfind
+  if (fs.existsSync('apps/hobbyfind/out')) {
+    fs.cpSync('apps/hobbyfind/out', 'docs/hobbyfind', { recursive: true });
+    console.log('✅ HobbyFind app built and copied successfully\n');
+  } else {
+    console.error('❌ HobbyFind app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build HobbyFind app:', error.message);
+  process.exit(1);
+}
+
+// Build Twitter app
+console.log('📦 Building Twitter app...');
+try {
+  execSync('cd apps/twitter && npm install --legacy-peer-deps --no-audit && npm run build', { stdio: 'inherit' });
+  
+  // Copy Twitter build to docs/twitter
+  if (fs.existsSync('apps/twitter/out')) {
+    fs.cpSync('apps/twitter/out', 'docs/twitter', { recursive: true });
+    console.log('✅ Twitter app built and copied successfully\n');
+  } else {
+    console.error('❌ Twitter app build output not found');
+    process.exit(1);
+  }
+} catch (error) {
+  console.error('❌ Failed to build Twitter app:', error.message);
+  process.exit(1);
+}
+
 console.log('🎉 All applications built successfully!');
 console.log('📁 Output directory: ./docs');
 console.log('\n📋 Available routes:');
@@ -191,6 +263,10 @@ console.log('  - /instagram');
 console.log('  - /otherColor');
 console.log('  - /g2048');
 console.log('  - /simtest');
+console.log('  - /supabase');
+console.log('  - /chatbot');
+console.log('  - /hobbyfind');
+console.log('  - /twitter');
 console.log('\n🌐 Deploy to GitHub Pages:');
 console.log('  1. Push to main branch');
 console.log('  2. GitHub Actions will automatically deploy');
