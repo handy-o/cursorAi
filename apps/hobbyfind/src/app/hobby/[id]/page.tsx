@@ -7,13 +7,13 @@ import { Star, MapPin, Heart, Calendar, Clock, Users, Share2, ArrowLeft, Phone, 
 import { hobbyData } from '@/lib/hobbyData'
 
 // 정적 내보내기를 위한 매개변수 생성 함수 - 제거 (동적 라우팅 사용)
-// export async function generateStaticParams() {
-//   // additionalDetails에 정의된 ID만 정적 생성
-//   const availableIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-//   return availableIds.map((id) => ({
-//     id: id.toString(),
-//   }))
-// }
+export async function generateStaticParams() {
+  // hobbyData에서 실제로 존재하는 모든 ID를 사용
+  const hobbyIds = Array.from({ length: 24 }, (_, i) => i + 1) // 1-24
+  return hobbyIds.map((id) => ({
+    id: id.toString(),
+  }))
+}
 
 
 interface HobbyDetail {
@@ -500,7 +500,7 @@ export default async function HobbyDetailPage({ params }: { params: Promise<{ id
   // 공통 데이터와 추가 세부 정보를 합쳐서 완전한 취미 정보 생성
   const hobbyDetail: HobbyDetail = {
     ...baseHobby,
-    ...additionalDetails[hobbyId],
+    ...(additionalDetails[hobbyId] || {}), // additionalDetails가 없으면 빈 객체 사용
     location: baseHobby.location, // 공통 데이터의 location 사용
   } as HobbyDetail
 
